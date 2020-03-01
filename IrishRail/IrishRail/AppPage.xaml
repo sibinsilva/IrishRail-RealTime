@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="IrishRail.AppPage"
+             x:Name="RailAppPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <TableView Margin="0" Intent="Settings"  HeightRequest="120" RowHeight="60" VerticalOptions="Start">
+                <TableView.Root>
+                    <TableSection>
+                        <EntryCell x:Name="txtStation" Label="Station Name" Placeholder="eg.Dublin Heuston">
+                        </EntryCell>
+                    </TableSection>
+                </TableView.Root>
+            </TableView>
+            <Button x:Name="btnSearch" Text="Search Station"
+           HorizontalOptions="Center"
+           VerticalOptions="StartAndExpand"  CornerRadius="5" TextColor="Black" BackgroundColor="Orange"
+                Clicked="btnSearch_Clicked"/>
+            <Label Text=""></Label>
+            <Label Text=""></Label>
+            <Label Text="Or click below to find your nearest Station" HorizontalOptions="Center"></Label>
+            <Button x:Name="btnFind" Text="Find nearest Stations" 
+           HorizontalOptions="Center"
+           VerticalOptions="StartAndExpand" CornerRadius="5" TextColor="Black" BackgroundColor="Orange" 
+                Clicked="btnFind_Clicked"/>
+            <ListView x:Name="StationList" ItemsSource="{Binding StatList}" SeparatorColor="Accent" SeparatorVisibility="Default" ItemSelected="OnListItemSelected" IsVisible="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame BackgroundColor="FloralWhite" Padding="2" Margin="0,1,0,1">
+                                <Label Text="{Binding Name}" TextColor="Black" VerticalTextAlignment="Start"  FontSize="Medium"  HorizontalOptions="FillAndExpand"></Label>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

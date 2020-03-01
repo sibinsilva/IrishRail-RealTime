@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="IrishRail.MainPage">
+
+    <StackLayout>
+        <!-- Place new controls here -->
+        <Label x:Name="lblMain" Text="Welcome to Irish Rail Realtime App!" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" TextColor="LimeGreen" FontSize="Title" />
+        <StackLayout>
+            <Image x:Name="image" WidthRequest="100"/>
+        </StackLayout>
+        <Button x:Name="btnLogin" Text="Start App"
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand"  CornerRadius="2" BorderColor="Aqua" TextColor="Black" BackgroundColor="Orange"
+                Clicked="btnLogin_ClickedAsync"/>
+    </StackLayout>
+
+</ContentPage>

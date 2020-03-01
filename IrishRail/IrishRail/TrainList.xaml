@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage  xmlns="http://xamarin.com/schemas/2014/forms"  
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              x:Class="IrishRail.TrainList">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Below are the Trains to station" FontSize="Large" BackgroundColor="Aqua"/>
+            <Label x:Name="TrSource" Text="" TextColor="Red" FontSize="Medium"/>
+            <Label Text="Destinations are to the below stations" FontSize="Medium" BackgroundColor="Aqua"/>
+            <ListView x:Name="depTrainsList" ItemsSource="{Binding TrainsList}" SeparatorColor="Accent" SeparatorVisibility="Default" ItemSelected="StationList_ItemSelected" IsVisible="True">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Frame BackgroundColor="Bisque" Padding="2" Margin="0,1,0,1">
+                        <Label Text="{Binding Destination}" TextColor="Black" VerticalTextAlignment="Start"  FontSize="Medium"  HorizontalOptions="FillAndExpand"></Label>
+                     </Frame>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+    </StackLayout>
+    </ContentPage.Content>
+</ContentPage> 

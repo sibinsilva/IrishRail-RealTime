@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="IrishRail.TrainDetails">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="Origin" Text="Origin:  " TextColor="Black" FontSize="Large"/>
+            <Label x:Name="Destination" Text="Destination:  " TextColor="Black" FontSize="Large"/>
+            <Label x:Name="SchArrival" Text="Scheduled Arrival:  " TextColor="Black" FontSize="Large"/>
+            <Label x:Name="ExpArrival" Text="Expected Arrival:  " TextColor="Black" FontSize="Large"/>
+            <Label x:Name="DueIn" Text="Due In:  " TextColor="Black" FontSize="Large"/>
+            <Label x:Name="Late" Text="Late By:  " TextColor="Black" FontSize="Large"/>
+            <Label x:Name="Status" Text="Current Status:  " TextColor="Black" FontSize="Large"/>
+            <Button x:Name="BookTicket" Text="Book Tickets" Clicked="BookTicket_Clicked" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Black" BackgroundColor="Orange" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
