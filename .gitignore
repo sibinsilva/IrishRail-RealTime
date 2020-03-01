@@ -338,3 +338,5 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/IrishRail/IrishRail/Settings.Designer.cs
+/IrishRail/IrishRail/Settings.settings
