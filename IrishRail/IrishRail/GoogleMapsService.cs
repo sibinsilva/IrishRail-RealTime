@@ -11,8 +11,6 @@ namespace IrishRail
 {
     public class GoogleMapsService : IGoogleMapsApiService
     {
-        static string _googleMapsKey = Settings.Default.GMapApi;
-
         private const string ApiBaseAddress = "https://maps.googleapis.com/maps/";
         private HttpClient CreateClient()
         {
@@ -28,7 +26,7 @@ namespace IrishRail
         }
         public static void Initialize(string googleMapsKey)
         {
-            _googleMapsKey = googleMapsKey;
+            Settings._googleMapsKey = googleMapsKey;
         }
 
 
@@ -38,7 +36,7 @@ namespace IrishRail
 
             using (var httpClient = CreateClient())
             {
-                var response = await httpClient.GetAsync($"api/place/autocomplete/json?input={Uri.EscapeUriString(text)}&key={_googleMapsKey}").ConfigureAwait(false);
+                var response = await httpClient.GetAsync($"api/place/autocomplete/json?input={Uri.EscapeUriString(text)}&key={Settings._googleMapsKey}").ConfigureAwait(false);
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -60,7 +58,7 @@ namespace IrishRail
             GooglePlaces result = null;
             using (var httpClient = CreateClient())
             {
-                var response = await httpClient.GetAsync($"api/place/details/json?placeid={Uri.EscapeUriString(placeId)}&key={_googleMapsKey}").ConfigureAwait(false);
+                var response = await httpClient.GetAsync($"api/place/details/json?placeid={Uri.EscapeUriString(placeId)}&key={Settings._googleMapsKey}").ConfigureAwait(false);
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -80,7 +78,7 @@ namespace IrishRail
             XmlDocument doc = new XmlDocument();
             using (var httpClient = CreateClient())
             {
-                string URL = ApiBaseAddress+"api/place/nearbysearch/xml?location=" +latitude+","+ longitude+"&rankby=distance&type=train_station&key="+_googleMapsKey;
+                string URL = ApiBaseAddress+"api/place/nearbysearch/xml?location=" +latitude+","+ longitude+"&rankby=distance&type=train_station&key="+Settings._googleMapsKey;
                 doc.Load(URL);
                 XmlNode status = doc.SelectSingleNode("//PlaceSearchResponse/status");
 

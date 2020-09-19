@@ -18,14 +18,14 @@
             </TableView>
             <Button x:Name="btnSearch" Text="Search Station"
            HorizontalOptions="Center"
-           VerticalOptions="StartAndExpand"  CornerRadius="5" TextColor="Black" BackgroundColor="Orange"
+           VerticalOptions="StartAndExpand"  CornerRadius="5" TextColor="Black" BackgroundColor="LightBlue"
                 Clicked="btnSearch_Clicked"/>
             <Label Text=""></Label>
             <Label Text=""></Label>
             <Label Text="Or click below to find your nearest Station" HorizontalOptions="Center"></Label>
             <Button x:Name="btnFind" Text="Find nearest Stations" 
            HorizontalOptions="Center"
-           VerticalOptions="StartAndExpand" CornerRadius="5" TextColor="Black" BackgroundColor="Orange" 
+           VerticalOptions="StartAndExpand" CornerRadius="5" TextColor="Black" BackgroundColor="LightBlue" 
                 Clicked="btnFind_Clicked"/>
             <ListView x:Name="StationList" ItemsSource="{Binding StatList}" SeparatorColor="Accent" SeparatorVisibility="Default" ItemSelected="OnListItemSelected" IsVisible="True">
                 <ListView.ItemTemplate>

@@ -16,7 +16,7 @@
         </StackLayout>
         <Button x:Name="btnLogin" Text="Start App"
            HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand"  CornerRadius="2" BorderColor="Aqua" TextColor="Black" BackgroundColor="Orange"
+           VerticalOptions="CenterAndExpand"  CornerRadius="2" BorderColor="LightBlue" TextColor="Black" BackgroundColor="LightBlue"
                 Clicked="btnLogin_ClickedAsync"/>
     </StackLayout>
 

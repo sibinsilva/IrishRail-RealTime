@@ -4,9 +4,9 @@
               x:Class="IrishRail.TrainList">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Below are the Trains to station" FontSize="Large" BackgroundColor="Aqua"/>
-            <Label x:Name="TrSource" Text="" TextColor="Red" FontSize="Medium"/>
-            <Label Text="Destinations are to the below stations" FontSize="Medium" BackgroundColor="Aqua"/>
+            <Label Text="Station Details: " FontSize="Large" BackgroundColor="LightBlue"/>
+            <Label x:Name="TrSource" Text="" TextColor="LightBlue" FontSize="Medium"/>
+            <Label Text="Destinations Details: " FontSize="Large" BackgroundColor="LightBlue"/>
             <ListView x:Name="depTrainsList" ItemsSource="{Binding TrainsList}" SeparatorColor="Accent" SeparatorVisibility="Default" ItemSelected="StationList_ItemSelected" IsVisible="True">
         <ListView.ItemTemplate>
             <DataTemplate>

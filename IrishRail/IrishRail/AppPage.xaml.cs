@@ -151,7 +151,15 @@ namespace IrishRail
                         StatList.Add(new StationName() { Name = stationData.StationDesc.ToString() });
                     }
                 }
-                StationList.ItemsSource = StatList;
+                if(StatList.Count == 0)
+                {
+                     DisplayAlert("No Station details are available for your search", "Try a different search", "Ok");
+                }
+                else
+                {
+                    StationList.ItemsSource = StatList;
+                }
+                
             }
         }
 
