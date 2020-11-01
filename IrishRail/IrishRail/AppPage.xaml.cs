@@ -34,12 +34,12 @@ namespace IrishRail
 
         private void btnFind_Clicked(object sender, EventArgs e)
         {
-            GetResultAsync();
+            GetResultAsync().ConfigureAwait(true);
         }
 
         private async Task GetResultAsync()
         {
-            await GetLocationCordsAsync();
+            await GetLocationCordsAsync().ConfigureAwait(true);
             if (latitude != null || longitude != null)
             {
                 this.BindingContext = this;
@@ -58,7 +58,7 @@ namespace IrishRail
         {
             try
             {
-                var location = await Geolocation.GetLastKnownLocationAsync();
+                var location = await Geolocation.GetLastKnownLocationAsync().ConfigureAwait(true);
                 if (location != null)
                 {
                     latitude = location.Latitude.ToString();
@@ -70,15 +70,14 @@ namespace IrishRail
                 }
             }
 
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                await DisplayAlert("Warning", ex.ToString(), "Ok");
+                await DisplayAlert("Warning", ex.ToString(), "Ok").ConfigureAwait(true);
             }
         }
 
         public void OnListItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            StationData stationtraindata = new StationData();
             if (e.SelectedItem != null)
             {
                 var SelectedStation = (StationName)e.SelectedItem;
@@ -175,7 +174,7 @@ namespace IrishRail
             // don't exit the app when back button is pressed
             Device.BeginInvokeOnMainThread(async () =>
             {
-                CloseApp = await DisplayAlert("Irish Rail", "Do you want to exit the application?", "No", "Yes");
+                CloseApp = await DisplayAlert("Irish Rail", "Do you want to exit the application?", "No", "Yes").ConfigureAwait(true);
                 if (!CloseApp)
                 {
                     Process.GetCurrentProcess().CloseMainWindow();

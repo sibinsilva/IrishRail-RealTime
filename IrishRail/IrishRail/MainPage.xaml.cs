@@ -25,7 +25,6 @@ namespace IrishRail
         {
             if(await CheckInternetConnection().ConfigureAwait(true))
             {
-                StationData Stations = new StationData();
                 IrishStationList = StationData.GetAllStationCodes();
                 App.Current.MainPage = new AppPage();
             }
