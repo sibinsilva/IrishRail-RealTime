@@ -27,12 +27,12 @@
            HorizontalOptions="Center"
            VerticalOptions="StartAndExpand" CornerRadius="5" TextColor="Black" BackgroundColor="LightBlue" 
                 Clicked="btnFind_Clicked"/>
-            <ListView x:Name="StationList" ItemsSource="{Binding StatList}" SeparatorColor="Accent" SeparatorVisibility="Default" ItemSelected="OnListItemSelected" IsVisible="True">
+            <ListView x:Name="StationNameList" ItemsSource="{Binding StationList}" SeparatorColor="Accent" SeparatorVisibility="Default" ItemSelected="OnListItemSelected" IsVisible="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Frame BackgroundColor="FloralWhite" Padding="2" Margin="0,1,0,1">
-                                <Label Text="{Binding Name}" TextColor="Black" VerticalTextAlignment="Start"  FontSize="Medium"  HorizontalOptions="FillAndExpand"></Label>
+                                <Label Text="{Binding TrainStationName}" TextColor="Black" VerticalTextAlignment="Start"  FontSize="Medium"  HorizontalOptions="FillAndExpand"></Label>
                             </Frame>
                         </ViewCell>
                     </DataTemplate>

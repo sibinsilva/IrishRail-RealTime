@@ -5,10 +5,9 @@ using System.Text;
 namespace IrishRail
 {
     public class StationName
-    {
+    { 
         private string name;
-
-        public string Name
+        public string TrainStationName
         {
             get { return name; }
             set { name = value; }

@@ -19,14 +19,14 @@ namespace IrishRail
             TrainsListing();
         }
         public ObservableCollection<StationTrains> TrainsList;
-        public static StationTrains SelectedTrain;
+        public static ObjStationData SelectedTrain;
         public void TrainsListing()
         {
             TrainsList = new ObservableCollection<StationTrains>();
-            foreach (StationTrains depTrains in AppPage.TrainData)
+            foreach (var DepartingTrain in AppPage.TrainData.ObjStationData)
             {
-                this.TrSource.Text = depTrains.Stationfullname;
-                TrainsList.Add(new StationTrains() { Destination = depTrains.Destination, Traincode=depTrains.Traincode, Duein=depTrains.Duein }) ;
+                this.TrSource.Text = DepartingTrain.Stationfullname;
+                TrainsList.Add(new StationTrains() { Destination = DepartingTrain.Destination, Traincode=DepartingTrain.Traincode, Duein=DepartingTrain.Duein }) ;
                 
             }
             depTrainsList.ItemsSource = TrainsList;
@@ -42,7 +42,7 @@ namespace IrishRail
             if(e.SelectedItem!=null)
             {
                 var Destination = (StationTrains)e.SelectedItem;
-                foreach(StationTrains train in AppPage.TrainData)
+                foreach(var train in AppPage.TrainData.ObjStationData)
                 {
                     if(train.Traincode==Destination.Traincode)
                     {

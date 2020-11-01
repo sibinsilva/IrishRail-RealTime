@@ -49,7 +49,7 @@ namespace IrishRail
                 this.SchArrival.Text = SchArrival.Text + Train.Scharrival.ToString() + " " + time;
             }
             this.DueIn.Text = DueIn.Text + Train.Duein.ToString() +  " minutes";
-            if (Train.Late == 0)
+            if (Train.Late == "0")
             {
                 this.Late.IsVisible = false;
             }

@@ -28,8 +28,8 @@ namespace IrishRail
         public string UserEntry;
         public bool CloseApp = true;
 
-        public ObservableCollection<StationName> StatList;
-        public static List<StationTrains> TrainData = new List<StationTrains>();
+        public ObservableCollection<StationName> StationList;
+        public static ArrayOfObjStationData TrainData = new ArrayOfObjStationData();
 
 
         private void btnFind_Clicked(object sender, EventArgs e)
@@ -44,14 +44,13 @@ namespace IrishRail
             {
                 this.BindingContext = this;
                 GoogleMapsService GmapService = new GoogleMapsService();
-                StatList = new ObservableCollection<StationName>();
-                List<string> stations = await GmapService.GetStationDetails(latitude, longitude);
-                foreach (string stat in stations)
+                StationList = new ObservableCollection<StationName>();
+                List<string> stations = GmapService.GetStationDetails(latitude, longitude);
+                foreach (string station in stations)
                 {
-                    StatList.Add(new StationName() { Name = stat });
+                    StationList.Add(new StationName() { TrainStationName = station });
                 }
-                StationList.ItemsSource = StatList;
-
+                StationNameList.ItemsSource = StationList;
             }
         }
 
@@ -83,19 +82,19 @@ namespace IrishRail
             if (e.SelectedItem != null)
             {
                 var SelectedStation = (StationName)e.SelectedItem;
-                
-                foreach (var station in MainPage.stations)
+
+                foreach (var station in MainPage.IrishStationList.ObjStation)
                 {
-                    if(station.StationDesc == SelectedStation.Name.ToString() || SelectedStation.Name.ToString().Contains(station.StationDesc))
+                    if (station.StationDesc == SelectedStation.TrainStationName.ToString() || SelectedStation.TrainStationName.ToString().Contains(station.StationDesc,StringComparison.InvariantCultureIgnoreCase))
                     {
-                        TrainData = stationtraindata.GetStationTrains(station.StationCode);
-                        if(TrainData.Count>0)
+                        TrainData = StationData.GetStationTrains(station.StationCode);
+                        if (TrainData.ObjStationData.Count > 0)
                         {
                             App.Current.MainPage = new TrainList();
                         }
                         else
                         {
-                           DisplayAlert("No Train details are available", "Try a different station", "Ok");
+                            DisplayAlert("No Train details are available", "Try a different station", "Ok");
                         }
                     }
                 }
@@ -122,11 +121,11 @@ namespace IrishRail
                 if (searchText != null)
                 {
                     List<string> names = null;
-                    foreach (Stations desc in MainPage.stations)
+                    foreach (var desc in MainPage.IrishStationList.ObjStation)
                     {
                         names.Add(desc.StationDesc);
                     }
-                    var FilterSearchCustomer = names.Where(x => x.ToLower().Contains(searchText.ToLower())).ToList();
+                    var FilterSearchCustomer = names.Where(x => x.Contains(searchText,StringComparison.OrdinalIgnoreCase)).ToList();
                 }
             }
 
@@ -142,22 +141,22 @@ namespace IrishRail
             else
             {
                 UserEntry = this.txtStation.Text;
-                StatList = new ObservableCollection<StationName>();
+                StationList = new ObservableCollection<StationName>();
 
-                foreach (Stations stationData in MainPage.stations)
+                foreach(var stationData in MainPage.IrishStationList.ObjStation)
                 {
-                    if (stationData.StationDesc.ToLower().Contains(UserEntry.ToLower()))
+                    if (stationData.StationDesc.Contains(UserEntry,StringComparison.OrdinalIgnoreCase))
                     {
-                        StatList.Add(new StationName() { Name = stationData.StationDesc.ToString() });
+                        StationList.Add(new StationName() { TrainStationName = stationData.StationDesc.ToString() });
                     }
                 }
-                if(StatList.Count == 0)
+                if (StationList.Count == 0)
                 {
                      DisplayAlert("No Station details are available for your search", "Try a different search", "Ok");
                 }
                 else
                 {
-                    StationList.ItemsSource = StatList;
+                    StationNameList.ItemsSource = StationList;
                 }
                 
             }

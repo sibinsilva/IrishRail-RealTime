@@ -12,7 +12,7 @@ namespace IrishRail
     public class GoogleMapsService : IGoogleMapsApiService
     {
         private const string ApiBaseAddress = "https://maps.googleapis.com/maps/";
-        private HttpClient CreateClient()
+        private static HttpClient CreateClient()
         {
             var httpClient = new HttpClient
             {
@@ -72,13 +72,13 @@ namespace IrishRail
             return result;
         }
 
-        public async Task<List<string>> GetStationDetails(string latitude,string longitude)
+        public List<string> GetStationDetails(string latitude, string longitude)
         {
             List<string> result = new List<string>();
             XmlDocument doc = new XmlDocument();
             using (var httpClient = CreateClient())
             {
-                string URL = ApiBaseAddress+"api/place/nearbysearch/xml?location=" +latitude+","+ longitude+"&rankby=distance&type=train_station&key="+Settings._googleMapsKey;
+                string URL = ApiBaseAddress + "api/place/nearbysearch/xml?location=" + latitude + "," + longitude + "&rankby=distance&type=train_station&key=" + Settings._googleMapsKey;
                 doc.Load(URL);
                 XmlNode status = doc.SelectSingleNode("//PlaceSearchResponse/status");
 
@@ -87,17 +87,17 @@ namespace IrishRail
                     return null;
                 }
                 else
+                {
+                    XmlNodeList elements = doc.SelectNodes("//PlaceSearchResponse/result");
+                    foreach (XmlNode element in elements)
                     {
-                        XmlNodeList elements = doc.SelectNodes("//PlaceSearchResponse/result");
-                        foreach (XmlNode element in elements)
-                        {
-                            XmlNode Singleelement = element.ChildNodes.Item(0);
-                            result.Add(Singleelement.InnerText);
-                        }
+                        XmlNode Singleelement = element.ChildNodes.Item(0);
+                        result.Add(Singleelement.InnerText);
+                    }
                 }
             }
 
-            return result ;
+            return result;
         }
     }
 }

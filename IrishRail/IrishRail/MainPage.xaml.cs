@@ -15,23 +15,23 @@ namespace IrishRail
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        public static ArrayOfObjStation IrishStationList = null;
         public MainPage()
         {
             InitializeComponent();
             image.Source = ImageSource.FromResource("IrishRail.Images.AppIcon.jpg");
         }
-        public static List<Stations> stations;
         private async void btnLogin_ClickedAsync(object sender, EventArgs e)
         {
-            if(await CheckInternetConnection())
+            if(await CheckInternetConnection().ConfigureAwait(true))
             {
-                StationData station = new StationData();
-                stations = station.GetAllStationCodes();
+                StationData Stations = new StationData();
+                IrishStationList = StationData.GetAllStationCodes();
                 App.Current.MainPage = new AppPage();
             }
             else
             {
-                await CheckInternetConnection();
+                await CheckInternetConnection().ConfigureAwait(true);
             }
 
         }
@@ -44,7 +44,7 @@ namespace IrishRail
             }
             else
             {
-                await DisplayAlert("No Internet Connection Detected", "Application Cannot Start without Internet Access", "Retry");
+                await DisplayAlert("No Internet Connection Detected", "Application Cannot Start without Internet Access", "Retry").ConfigureAwait(true);
                 return false;
             }
         }
