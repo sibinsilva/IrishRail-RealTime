@@ -79,5 +79,7 @@ namespace IrishRail
         {
             Launcher.TryOpenAsync("https://booking.cf.irishrail.ie/en-IE/mys3/login");
         }
+
+        
     }
 }

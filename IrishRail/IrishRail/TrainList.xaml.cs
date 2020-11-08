@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -51,6 +51,22 @@ namespace IrishRail
                 }
                 App.Current.MainPage = new TrainDetails();
             }
+        }
+
+        private void Directions_Clicked(object sender, EventArgs e)
+        {
+            var location = new Location(AppPage.PickedStationLatitude, AppPage.PickedStationLongitude);
+            var options = new MapLaunchOptions { Name = AppPage.PickedStation, NavigationMode = NavigationMode.Default };
+
+            try
+            {
+                Map.OpenAsync(location, options);
+            }
+            catch (Exception ex)
+            {
+                // No map application available to open
+            }
+
         }
     }
 }

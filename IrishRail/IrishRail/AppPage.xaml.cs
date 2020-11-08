@@ -23,8 +23,11 @@ namespace IrishRail
             InitializeComponent();
 
         }
-        public static string latitude;
+        public static string latitude ;
         public static string longitude;
+        public static string PickedStation;
+        public static double PickedStationLatitude;
+        public static double PickedStationLongitude;
         public string UserEntry;
         public bool CloseApp = true;
 
@@ -86,6 +89,9 @@ namespace IrishRail
                 {
                     if (station.StationDesc == SelectedStation.TrainStationName.ToString() || SelectedStation.TrainStationName.ToString().Contains(station.StationDesc,StringComparison.InvariantCultureIgnoreCase))
                     {
+                        PickedStation = station.StationDesc;
+                        PickedStationLatitude = Convert.ToDouble(station.StationLatitude);
+                        PickedStationLongitude = Convert.ToDouble(station.StationLongitude);
                         TrainData = StationData.GetStationTrains(station.StationCode);
                         if (TrainData.ObjStationData.Count > 0)
                         {
