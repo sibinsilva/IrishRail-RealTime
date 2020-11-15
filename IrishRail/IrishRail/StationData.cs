@@ -23,19 +23,26 @@ namespace IrishRail
         }
         public static ArrayOfObjStation GetAllStationCodes()
         {
-            ArrayOfObjStation StationList = new ArrayOfObjStation();
-            XmlDocument maindoc = new XmlDocument();
-            using (var httpClient = CreateClient())
+            try
             {
-                string URL = "http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML";
-                maindoc.Load(URL);
-                XmlSerializer serializer =
-        new XmlSerializer(typeof(ArrayOfObjStation));
-                using (var reader = new StringReader(maindoc.InnerXml))
+                ArrayOfObjStation StationList = new ArrayOfObjStation();
+                XmlDocument maindoc = new XmlDocument();
+                using (var httpClient = CreateClient())
                 {
-                    StationList = (ArrayOfObjStation)serializer.Deserialize(reader);
+                    string URL = "http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML";
+                    maindoc.Load(URL);
+                    XmlSerializer serializer = new XmlSerializer(typeof(ArrayOfObjStation));
+                    using (var reader = new StringReader(maindoc.InnerXml))
+                    {
+                        StationList = (ArrayOfObjStation)serializer.Deserialize(reader);
+                    }
+                    
                 }
                 return StationList;
+            }
+            catch(Exception ex)
+            {
+                return null;
             }
         }
 

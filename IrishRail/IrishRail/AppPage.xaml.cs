@@ -82,28 +82,35 @@ namespace IrishRail
 
         public void OnListItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            if (e.SelectedItem != null)
+            try
             {
-                var SelectedStation = (StationName)e.SelectedItem;
-
-                foreach (var station in MainPage.IrishStationList.ObjStation)
+                if (e.SelectedItem != null)
                 {
-                    if (station.StationDesc == SelectedStation.TrainStationName.ToString() || SelectedStation.TrainStationName.ToString().Contains(station.StationDesc,StringComparison.InvariantCultureIgnoreCase))
+                    var SelectedStation = (StationName)e.SelectedItem;
+
+                    foreach (var station in MainPage.IrishStationList.ObjStation)
                     {
-                        PickedStation = station.StationDesc;
-                        PickedStationLatitude = Convert.ToDouble(station.StationLatitude);
-                        PickedStationLongitude = Convert.ToDouble(station.StationLongitude);
-                        TrainData = StationData.GetStationTrains(station.StationCode);
-                        if (TrainData.ObjStationData.Count > 0)
+                        if (station.StationDesc == SelectedStation.TrainStationName.ToString() || SelectedStation.TrainStationName.ToString().Contains(station.StationDesc, StringComparison.InvariantCultureIgnoreCase))
                         {
-                            App.Current.MainPage = new TrainList();
-                        }
-                        else
-                        {
-                            DisplayAlert("No Train details are available", "Try a different station", "Ok");
+                            PickedStation = station.StationDesc;
+                            PickedStationLatitude = Convert.ToDouble(station.StationLatitude);
+                            PickedStationLongitude = Convert.ToDouble(station.StationLongitude);
+                            TrainData = StationData.GetStationTrains(station.StationCode);
+                            if (TrainData.ObjStationData.Count > 0)
+                            {
+                                App.Current.MainPage = new TrainList();
+                            }
+                            else
+                            {
+                                DisplayAlert("No Train details are available", "Try a different station", "Ok");
+                            }
                         }
                     }
                 }
+            }
+            catch(Exception ex)
+            {
+                
             }
         }
 
@@ -140,30 +147,41 @@ namespace IrishRail
 
         private void btnSearch_Clicked(object sender, EventArgs e)
         {
-            if (this.txtStation.Text==null)
+            try
             {
-                DisplayAlert("You must enter a search text", "", "Retry");
-            }
-            else
-            {
-                UserEntry = this.txtStation.Text;
-                StationList = new ObservableCollection<StationName>();
-
-                foreach(var stationData in MainPage.IrishStationList.ObjStation)
+                if (this.txtStation.Text == null)
                 {
-                    if (stationData.StationDesc.Contains(UserEntry,StringComparison.OrdinalIgnoreCase))
-                    {
-                        StationList.Add(new StationName() { TrainStationName = stationData.StationDesc.ToString() });
-                    }
-                }
-                if (StationList.Count == 0)
-                {
-                     DisplayAlert("No Station details are available for your search", "Try a different search", "Ok");
+                    DisplayAlert("You must enter a search text", "", "Retry");
                 }
                 else
                 {
-                    StationNameList.ItemsSource = StationList;
+                    UserEntry = this.txtStation.Text;
+                    StationList = new ObservableCollection<StationName>();
+                    if (MainPage.IrishStationList == null)
+                    {
+                        DisplayAlert("No Station details are available for your search", "Try a different search", "Ok");
+                    }
+
+                    foreach (var stationData in MainPage.IrishStationList.ObjStation)
+                    {
+                        if (stationData.StationDesc.Contains(UserEntry, StringComparison.OrdinalIgnoreCase))
+                        {
+                            StationList.Add(new StationName() { TrainStationName = stationData.StationDesc.ToString() });
+                        }
+                    }
+                    if (StationList.Count == 0)
+                    {
+                        DisplayAlert("No Station details are available for your search", "Try a different search", "Ok");
+                    }
+                    else
+                    {
+                        StationNameList.ItemsSource = StationList;
+                    }
+
                 }
+            }
+            catch(Exception ex)
+            {
                 
             }
         }
