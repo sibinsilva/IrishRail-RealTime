@@ -21,6 +21,7 @@ namespace IrishRail
         public AppPage()
         {
             InitializeComponent();
+            App.CheckInternetConnectivity(this.lbl_NoInternet, this);
 
         }
         public static string latitude ;

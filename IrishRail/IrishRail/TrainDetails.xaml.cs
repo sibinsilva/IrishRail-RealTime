@@ -15,6 +15,7 @@ namespace IrishRail
         public TrainDetails()
         {
             InitializeComponent();
+            App.CheckInternetConnectivity(this.lbl_NoInternet, this);
             TrainDetail();
         }
 

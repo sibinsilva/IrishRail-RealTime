@@ -19,20 +19,13 @@ namespace IrishRail
         public MainPage()
         {
             InitializeComponent();
+            App.CheckInternetConnectivity(this.lbl_NoInternet, this);
             image.Source = ImageSource.FromResource("IrishRail.Images.AppIcon.jpg");
         }
         private async void btnLogin_ClickedAsync(object sender, EventArgs e)
         {
-            if(await CheckInternetConnection().ConfigureAwait(true))
-            {
-                IrishStationList = StationData.GetAllStationCodes();
-                App.Current.MainPage = new AppPage();
-            }
-            else
-            {
-                await CheckInternetConnection().ConfigureAwait(true);
-            }
-
+            IrishStationList = StationData.GetAllStationCodes();
+            App.Current.MainPage = new AppPage();
         }
 
         private async Task<bool> CheckInternetConnection()

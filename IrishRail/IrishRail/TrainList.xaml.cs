@@ -16,6 +16,7 @@ namespace IrishRail
         public TrainList()
         {
             InitializeComponent();
+            App.CheckInternetConnectivity(this.lbl_NoInternet, this);
             TrainsListing();
         }
         public ObservableCollection<StationTrains> TrainsList;
@@ -26,8 +27,8 @@ namespace IrishRail
             foreach (var DepartingTrain in AppPage.TrainData.ObjStationData)
             {
                 this.TrSource.Text = DepartingTrain.Stationfullname;
-                TrainsList.Add(new StationTrains() { Destination = DepartingTrain.Destination, Traincode=DepartingTrain.Traincode, Duein=DepartingTrain.Duein }) ;
-                
+                TrainsList.Add(new StationTrains() { Destination = DepartingTrain.Destination, Traincode=DepartingTrain.Traincode, Duein = DepartingTrain.Duein });
+
             }
             depTrainsList.ItemsSource = TrainsList;
         }

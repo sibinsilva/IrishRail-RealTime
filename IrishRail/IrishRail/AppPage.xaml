@@ -8,6 +8,7 @@
              x:Name="RailAppPage">
     <ContentPage.Content>
         <StackLayout>
+            <Label x:Name="lbl_NoInternet" BackgroundColor="Red" TextColor="White" HorizontalTextAlignment="Center"></Label>
             <TableView Margin="0" Intent="Settings"  HeightRequest="120" RowHeight="60" VerticalOptions="Start">
                 <TableView.Root>
                     <TableSection>

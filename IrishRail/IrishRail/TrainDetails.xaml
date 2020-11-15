@@ -7,6 +7,7 @@
              x:Class="IrishRail.TrainDetails">
     <ContentPage.Content>
         <StackLayout>
+            <Label x:Name="lbl_NoInternet" BackgroundColor="Red" TextColor="White" HorizontalTextAlignment="Center"></Label>
             <Label x:Name="Origin" Text="Origin:  " TextColor="Black" FontSize="Large"/>
             <Label x:Name="Destination" Text="Destination:  " TextColor="Black" FontSize="Large"/>
             <Label x:Name="SchArrival" Text="Scheduled Arrival:  " TextColor="Black" FontSize="Large"/>

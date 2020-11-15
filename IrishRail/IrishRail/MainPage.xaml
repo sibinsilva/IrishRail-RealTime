@@ -8,6 +8,7 @@
 
     <StackLayout>
         <!-- Place new controls here -->
+        <Label x:Name="lbl_NoInternet" BackgroundColor="Red" TextColor="White" HorizontalTextAlignment="Center"></Label>
         <Label x:Name="lblMain" Text="Welcome to Irish Rail Realtime App!" 
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" TextColor="LimeGreen" FontSize="Title" />
