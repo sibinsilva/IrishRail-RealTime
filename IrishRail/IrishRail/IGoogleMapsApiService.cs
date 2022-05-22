@@ -5,6 +5,6 @@ namespace IrishRail
     public interface IGoogleMapsApiService
     {
         Task<GooglePlaceAutoCompleteResult> GetPlaces(string text);
-        Task<GooglePlaces> GetPlaceDetails(string placeId);
+        Task<clsGooglePlaces> GetPlaceDetails(string placeId);
     }
 }

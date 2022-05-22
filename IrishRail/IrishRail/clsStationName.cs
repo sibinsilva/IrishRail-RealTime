@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IrishRail
 {
-    public class StationName
+    public class clsStationName
     { 
         private string name;
         public string TrainStationName

@@ -19,15 +19,15 @@ namespace IrishRail
             App.CheckInternetConnectivity(this.lbl_NoInternet, this);
             TrainsListing();
         }
-        public ObservableCollection<StationTrains> TrainsList;
+        public ObservableCollection<clsTrainList> TrainsList;
         public static ObjStationData SelectedTrain;
         public void TrainsListing()
         {
-            TrainsList = new ObservableCollection<StationTrains>();
+            TrainsList = new ObservableCollection<clsTrainList>();
             foreach (var DepartingTrain in AppPage.TrainData.ObjStationData)
             {
                 this.TrSource.Text = DepartingTrain.Stationfullname;
-                TrainsList.Add(new StationTrains() { Destination = DepartingTrain.Destination, Traincode=DepartingTrain.Traincode, Duein = DepartingTrain.Duein });
+                TrainsList.Add(new clsTrainList() { Destination = DepartingTrain.Destination, Traincode=DepartingTrain.Traincode, Duein = DepartingTrain.Duein });
 
             }
             depTrainsList.ItemsSource = TrainsList;
@@ -42,7 +42,7 @@ namespace IrishRail
         {
             if(e.SelectedItem!=null)
             {
-                var Destination = (StationTrains)e.SelectedItem;
+                var Destination = (clsTrainList)e.SelectedItem;
                 foreach(var train in AppPage.TrainData.ObjStationData)
                 {
                     if(train.Traincode==Destination.Traincode)
@@ -66,7 +66,7 @@ namespace IrishRail
             }
             catch (Exception)
             {
-                Generic.OpenBrowser(new Uri($"http://maps.google.com/maps?saddr={Source}&daddr={Destination}")).ConfigureAwait(true);
+                clsGeneric.OpenBrowser(new Uri($"http://maps.google.com/maps?saddr={Source}&daddr={Destination}")).ConfigureAwait(true);
                 // No map application available to open so try using a web browser
             }
 

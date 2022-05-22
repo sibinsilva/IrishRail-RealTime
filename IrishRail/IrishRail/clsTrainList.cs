@@ -1,6 +1,6 @@
 ﻿namespace IrishRail
 {
-    public class StationTrains
+    public class clsTrainList
     {
         public string Destination { get; set; }
         public string Traincode { get; set; }

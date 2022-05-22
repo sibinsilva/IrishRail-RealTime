@@ -53,9 +53,9 @@ namespace IrishRail
             return results;
         }
 
-        public async Task<GooglePlaces> GetPlaceDetails(string placeId)
+        public async Task<clsGooglePlaces> GetPlaceDetails(string placeId)
         {
-            GooglePlaces result = null;
+            clsGooglePlaces result = null;
             using (var httpClient = CreateClient())
             {
                 var response = await httpClient.GetAsync($"api/place/details/json?placeid={Uri.EscapeUriString(placeId)}&key={Settings._googleMapsKey}").ConfigureAwait(false);
@@ -64,7 +64,7 @@ namespace IrishRail
                     var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                     if (!string.IsNullOrWhiteSpace(json) && json != "ERROR")
                     {
-                        result = new GooglePlaces(JObject.Parse(json));
+                        result = new clsGooglePlaces(JObject.Parse(json));
                     }
                 }
             }

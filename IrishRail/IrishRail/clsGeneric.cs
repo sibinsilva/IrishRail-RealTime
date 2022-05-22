@@ -6,7 +6,7 @@ using Xamarin.Essentials;
 
 namespace IrishRail
 {
-    internal static class Generic
+    internal static class clsGeneric
     {
         public static async Task OpenBrowser(Uri uri)
         {

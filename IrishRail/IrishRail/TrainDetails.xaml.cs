@@ -78,7 +78,7 @@ namespace IrishRail
 
         private void BookTicket_Clicked(object sender, EventArgs e)
         {
-            Generic.OpenBrowser(new Uri("https://booking.cf.irishrail.ie/en-IE/mys3/login")).ConfigureAwait(true);
+            clsGeneric.OpenBrowser(new Uri("https://booking.cf.irishrail.ie/en-IE/mys3/login")).ConfigureAwait(true);
         }
 
         
