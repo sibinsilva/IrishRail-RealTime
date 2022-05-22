@@ -78,20 +78,10 @@ namespace IrishRail
 
         private void BookTicket_Clicked(object sender, EventArgs e)
         {
-            OpenBrowser(new Uri("https://booking.cf.irishrail.ie/en-IE/mys3/login")).ConfigureAwait(true);
+            Generic.OpenBrowser(new Uri("https://booking.cf.irishrail.ie/en-IE/mys3/login")).ConfigureAwait(true);
         }
 
-        private async Task OpenBrowser(Uri uri)
-        {
-            try
-            {
-                await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
-            }
-            catch (Exception ex)
-            {
-                // An unexpected error occured. No browser may be installed on the device.
-            }
-        }
+        
 
     }
 }

@@ -58,14 +58,16 @@ namespace IrishRail
         {
             var location = new Location(AppPage.PickedStationLatitude, AppPage.PickedStationLongitude);
             var options = new MapLaunchOptions { Name = AppPage.PickedStation, NavigationMode = NavigationMode.Default };
-
+            string Source = AppPage.latitude.ToString() + "," + AppPage.longitude.ToString();
+            string Destination = AppPage.PickedStationLatitude.ToString() + "," + AppPage.PickedStationLongitude.ToString();
             try
             {
                 Map.OpenAsync(location, options);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                // No map application available to open
+                Generic.OpenBrowser(new Uri($"http://maps.google.com/maps?saddr={Source}&daddr={Destination}")).ConfigureAwait(true);
+                // No map application available to open so try using a web browser
             }
 
         }
